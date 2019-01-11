@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdlib>
-#include <string>
+//#include <string>
 
 class base_object 
 {

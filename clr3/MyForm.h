@@ -9,7 +9,7 @@ base_object bullet, enemy_bullet1(-3), enemy_bullet2(-3), enemy_bullet3(-3);
 // 
 // Players
 //
-player user(270, 330),enemy(270,30);
+player user(270, 390),enemy(270,30);
 
 namespace clr3 {
 	using namespace System;
@@ -29,6 +29,7 @@ namespace clr3 {
 	System::Media::SoundPlayer^ powerup = gcnew System::Media::SoundPlayer();
 	System::Media::SoundPlayer^ stage_clear = gcnew System::Media::SoundPlayer();
 	System::Media::SoundPlayer^ coin = gcnew System::Media::SoundPlayer();
+	System::Media::SoundPlayer^ startmenu = gcnew System::Media::SoundPlayer();
 	
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
 	private: System::Windows::Forms::Timer^  timer1;
@@ -49,7 +50,8 @@ namespace clr3 {
 	private: System::Windows::Forms::PictureBox^  pictureBox10;
 	private: System::Windows::Forms::PictureBox^  pictureBox11;
 
-	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::PictureBox^  pictureBox14;
+	private: System::Windows::Forms::PictureBox^  pictureBox12;
 
 	public:
 		MyForm(void)
@@ -63,6 +65,8 @@ namespace clr3 {
 			powerup->SoundLocation = "smb_powerup.wav";
 			stage_clear->SoundLocation = "smb_stage_clear.wav";
 			coin->SoundLocation = "smb_bump.wav";
+			startmenu->SoundLocation = "start.wav";
+			startmenu->PlayLooping();
 		}
 
 	protected:
@@ -108,7 +112,6 @@ namespace clr3 {
 			this->timer3 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox5 = (gcnew System::Windows::Forms::PictureBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->timer4 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox7 = (gcnew System::Windows::Forms::PictureBox());
@@ -119,6 +122,8 @@ namespace clr3 {
 			this->timer7 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->pictureBox10 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox11 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox12 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox14 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
@@ -130,16 +135,19 @@ namespace clr3 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox10))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox14))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(270, 330);
+			this->pictureBox1->Location = System::Drawing::Point(270, 390);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(60, 60);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Visible = false;
 			// 
 			// pictureBox2
 			// 
@@ -192,8 +200,8 @@ namespace clr3 {
 			this->button1->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->button1->Enabled = false;
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Forte", 26.25F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->button1->Font = (gcnew System::Drawing::Font(L"Arial", 26.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->button1->ForeColor = System::Drawing::SystemColors::MenuHighlight;
 			this->button1->Location = System::Drawing::Point(206, 184);
 			this->button1->Name = L"button1";
@@ -212,20 +220,6 @@ namespace clr3 {
 			this->pictureBox5->Size = System::Drawing::Size(182, 13);
 			this->pictureBox5->TabIndex = 5;
 			this->pictureBox5->TabStop = false;
-			// 
-			// button2
-			// 
-			this->button2->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Forte", 26.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(206, 390);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(187, 80);
-			this->button2->TabIndex = 6;
-			this->button2->Text = L"Start";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// timer4
 			// 
@@ -307,6 +301,26 @@ namespace clr3 {
 			this->pictureBox11->TabStop = false;
 			this->pictureBox11->Visible = false;
 			// 
+			// pictureBox12
+			// 
+			this->pictureBox12->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->pictureBox12->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox12.Image")));
+			this->pictureBox12->Location = System::Drawing::Point(229, 305);
+			this->pictureBox12->Name = L"pictureBox12";
+			this->pictureBox12->Size = System::Drawing::Size(147, 45);
+			this->pictureBox12->TabIndex = 13;
+			this->pictureBox12->TabStop = false;
+			this->pictureBox12->Click += gcnew System::EventHandler(this, &MyForm::pictureBox12_Click);
+			// 
+			// pictureBox14
+			// 
+			this->pictureBox14->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox14.Image")));
+			this->pictureBox14->Location = System::Drawing::Point(46, 73);
+			this->pictureBox14->Name = L"pictureBox14";
+			this->pictureBox14->Size = System::Drawing::Size(542, 560);
+			this->pictureBox14->TabIndex = 15;
+			this->pictureBox14->TabStop = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -314,18 +328,19 @@ namespace clr3 {
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->ClientSize = System::Drawing::Size(600, 600);
 			this->Controls->Add(this->button1);
+			this->Controls->Add(this->pictureBox12);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->pictureBox11);
 			this->Controls->Add(this->pictureBox8);
-			this->Controls->Add(this->button2);
 			this->Controls->Add(this->pictureBox10);
 			this->Controls->Add(this->pictureBox5);
 			this->Controls->Add(this->pictureBox4);
 			this->Controls->Add(this->pictureBox3);
 			this->Controls->Add(this->pictureBox2);
-			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->pictureBox6);
 			this->Controls->Add(this->pictureBox9);
 			this->Controls->Add(this->pictureBox7);
+			this->Controls->Add(this->pictureBox14);
 			this->Name = L"MyForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Bai";
@@ -341,21 +356,25 @@ namespace clr3 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox10))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox14))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 
 #pragma endregion
 
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		Application::Restart();
+	private: System::Void pictureBox12_Click(System::Object^  sender, System::EventArgs^  e) {
+	pictureBox12->Visible = false;
+	startmenu->Stop();
+	pictureBox14->Visible = false;
+	pictureBox1->Visible = true;
+	pictureBox3->Visible = true;
+	timer2->Enabled = true;
 	}
 
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		button2->Visible = false;
-		button2->Enabled = false;
-		pictureBox3->Visible = true;
-		timer2->Enabled = true;
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		Application::Restart();
 	}
 
 	private: System::Void MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
@@ -420,7 +439,7 @@ namespace clr3 {
 				timer4->Enabled = true;
 			white_block.set_basic_speed(score / 30 + 1);
 			red_block.set_basic_speed(score / 30 + 1);
-			if (score == 0)
+			if (score == 99)
 			{
 				sound1->PlayLooping();
 				timer2->Enabled = false;

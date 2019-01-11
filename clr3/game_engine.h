@@ -8,6 +8,7 @@ protected:
 	int step, x, y, size_y;
 public:
 	base_object();
+	base_object(int);
 	~base_object() {}
 	void move();
 	void set_speed(int);
@@ -19,7 +20,6 @@ public:
 	friend void fire(base_object&, base_object&);
 	friend bool block_collision(base_object&, base_object&);
 	friend bool box_collision(base_object&, base_object&);
-	friend bool top_collision(base_object&, base_object&);
 	friend void set_start_position(base_object&, base_object&);
 };
 
@@ -34,13 +34,6 @@ public:
 	void set_basic_speed(int);
 };
 
-class enemy_bull : public object
-{
-public:
-	enemy_bull();
-	~enemy_bull(){}
-};
-
 class present : public base_object
 {
 public:
@@ -51,8 +44,9 @@ public:
 
 class player : public base_object
 {
+private: 
+	int bullet_start_y;
 public:
-	player();
 	player(int,int);
 	~player() {}
 	void left();

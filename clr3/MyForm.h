@@ -3,15 +3,13 @@
 // 
 // Objects
 //
-object white_block;
-object red_block;
-enemy_bull enemy_bullet, enemy_bullet2;
+object white_block, red_block;
 present present_box;
-base_object bullet;
+base_object bullet, enemy_bullet1(-3), enemy_bullet2(-3), enemy_bullet3(-3);
 // 
 // Players
 //
-player user,enemy(270,10);
+player user(270, 330),enemy(270,30);
 
 namespace clr3 {
 	using namespace System;
@@ -49,6 +47,7 @@ namespace clr3 {
 	private: System::Windows::Forms::Timer^  timer6;
 	private: System::Windows::Forms::Timer^  timer7;
 	private: System::Windows::Forms::PictureBox^  pictureBox10;
+	private: System::Windows::Forms::PictureBox^  pictureBox11;
 
 	private: System::Windows::Forms::Button^  button2;
 
@@ -119,6 +118,7 @@ namespace clr3 {
 			this->timer6 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timer7 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->pictureBox10 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox11 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
@@ -129,12 +129,13 @@ namespace clr3 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox10))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(270, 270);
+			this->pictureBox1->Location = System::Drawing::Point(270, 330);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(60, 60);
 			this->pictureBox1->TabIndex = 0;
@@ -175,7 +176,7 @@ namespace clr3 {
 			this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
 			this->pictureBox4->Location = System::Drawing::Point(207, 52);
 			this->pictureBox4->Name = L"pictureBox4";
-			this->pictureBox4->Size = System::Drawing::Size(187, 17);
+			this->pictureBox4->Size = System::Drawing::Size(187, 15);
 			this->pictureBox4->TabIndex = 3;
 			this->pictureBox4->TabStop = false;
 			this->pictureBox4->Visible = false;
@@ -259,7 +260,7 @@ namespace clr3 {
 			// pictureBox8
 			// 
 			this->pictureBox8->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox8.Image")));
-			this->pictureBox8->Location = System::Drawing::Point(270, 20);
+			this->pictureBox8->Location = System::Drawing::Point(270, 30);
 			this->pictureBox8->Name = L"pictureBox8";
 			this->pictureBox8->Size = System::Drawing::Size(60, 60);
 			this->pictureBox8->TabIndex = 9;
@@ -278,7 +279,7 @@ namespace clr3 {
 			// 
 			// timer6
 			// 
-			this->timer6->Interval = 240;
+			this->timer6->Interval = 300;
 			this->timer6->Tick += gcnew System::EventHandler(this, &MyForm::timer6_Tick);
 			// 
 			// timer7
@@ -296,22 +297,33 @@ namespace clr3 {
 			this->pictureBox10->TabStop = false;
 			this->pictureBox10->Visible = false;
 			// 
+			// pictureBox11
+			// 
+			this->pictureBox11->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox11.Image")));
+			this->pictureBox11->Location = System::Drawing::Point(292, 140);
+			this->pictureBox11->Name = L"pictureBox11";
+			this->pictureBox11->Size = System::Drawing::Size(15, 15);
+			this->pictureBox11->TabIndex = 12;
+			this->pictureBox11->TabStop = false;
+			this->pictureBox11->Visible = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->ClientSize = System::Drawing::Size(600, 600);
-			this->Controls->Add(this->pictureBox10);
 			this->Controls->Add(this->button1);
+			this->Controls->Add(this->pictureBox11);
+			this->Controls->Add(this->pictureBox8);
 			this->Controls->Add(this->button2);
+			this->Controls->Add(this->pictureBox10);
 			this->Controls->Add(this->pictureBox5);
 			this->Controls->Add(this->pictureBox4);
 			this->Controls->Add(this->pictureBox3);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->pictureBox6);
-			this->Controls->Add(this->pictureBox8);
 			this->Controls->Add(this->pictureBox9);
 			this->Controls->Add(this->pictureBox7);
 			this->Name = L"MyForm";
@@ -328,11 +340,23 @@ namespace clr3 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox10))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 
 #pragma endregion
+
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		Application::Restart();
+	}
+
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		button2->Visible = false;
+		button2->Enabled = false;
+		pictureBox3->Visible = true;
+		timer2->Enabled = true;
+	}
 
 	private: System::Void MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 		switch (e->KeyValue)
@@ -355,7 +379,7 @@ namespace clr3 {
 	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 		pictureBox2->Location = System::Drawing::Point(bullet.get_x(), bullet.get_y());
 		pictureBox2->Visible = true;
-		if (bullet.get_y() >= 10)
+		if (bullet.get_y() >= 30)
 		{
 			bullet.move();
 			pictureBox2->Location = System::Drawing::Point(bullet.get_x(), bullet.get_y());
@@ -392,11 +416,11 @@ namespace clr3 {
 				button1->Visible = true;
 			}
 			this->Text = "Score: " + Convert::ToString(score);
-			if (score >= 25 && score % 25 == 0 && timer5->Enabled == false) 
+			if (score >= 5 && score % 5 == 0 && timer5->Enabled == false) 
 				timer4->Enabled = true;
 			white_block.set_basic_speed(score / 30 + 1);
 			red_block.set_basic_speed(score / 30 + 1);
-			if (score == 99)
+			if (score == 0)
 			{
 				sound1->PlayLooping();
 				timer2->Enabled = false;
@@ -407,8 +431,7 @@ namespace clr3 {
 				timer7->Enabled = true;
 				pictureBox8->Visible= true;
 				pictureBox9->Visible = true;
-				set_start_position(enemy_bullet, enemy);
-				enemy_bullet2.set_speed(-3);
+				set_start_position(enemy_bullet1, enemy);
 				pictureBox8->Location = System::Drawing::Point(enemy.get_x(), enemy.get_y());
 			}
 	}
@@ -429,17 +452,6 @@ namespace clr3 {
 			}
 			red_block.renew();
 			}
-	}
-
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		Application::Restart();
-	}
-
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		button2->Visible = false;
-		button2->Enabled = false;
-		pictureBox3->Visible = true;
-		timer2->Enabled = true;
 	}
 
 	private: System::Void timer4_Tick(System::Object^  sender, System::EventArgs^  e) {
@@ -476,6 +488,7 @@ namespace clr3 {
 	}
 
 	private: System::Void timer6_Tick(System::Object^  sender, System::EventArgs^  e) {
+		if (!(bullet.get_x() + 15 >= enemy.get_x()- enemy.get_size_y() && bullet.get_x() <= enemy.get_x() + 2 * enemy.get_size_y() && bullet.get_y() < 170)||(bullet.get_x() + 15 >= enemy.get_x() && bullet.get_x() <= enemy.get_x() + enemy.get_size_y()))
 		if (rand() % 2)
 			enemy.left();
 		else
@@ -483,11 +496,9 @@ namespace clr3 {
 		pictureBox8->Location = System::Drawing::Point(enemy.get_x(), enemy.get_y());
 	}
 
-	bool t;
-
 	void bull_cycle(base_object& enemy_bullet)
 	{
-		if (block_collision(user, enemy_bullet) || top_collision(enemy, bullet) || box_collision(enemy, user))
+		if (block_collision(user, enemy_bullet) || box_collision(bullet, enemy) || box_collision(enemy, user))
 		{
 			pictureBox2->Visible = false;
 			timer6->Enabled = false;
@@ -497,7 +508,7 @@ namespace clr3 {
 			sound1->Stop();
 			if (block_collision(user, enemy_bullet) || box_collision(enemy, user))
 				die->Play();
-			if (top_collision(enemy, bullet))
+			if (box_collision(bullet,enemy))
 				stage_clear->Play();
 		}
 		if (enemy_bullet.get_y() >= 570 || (enemy_bullet.object_destroyed(bullet)))
@@ -512,21 +523,34 @@ namespace clr3 {
 		}
 	}
 
+	bool t2,t3;
+
 	private: System::Void timer7_Tick(System::Object^  sender, System::EventArgs^  e) {
-	pictureBox9->Location = System::Drawing::Point(enemy_bullet.get_x(), enemy_bullet.get_y());
+	pictureBox9->Location = System::Drawing::Point(enemy_bullet1.get_x(), enemy_bullet1.get_y());
 	pictureBox10->Location = System::Drawing::Point(enemy_bullet2.get_x(), enemy_bullet2.get_y());
-	enemy_bullet.move();
-	if(t)
+	pictureBox11->Location = System::Drawing::Point(enemy_bullet3.get_x(), enemy_bullet3.get_y());
+	enemy_bullet1.move();
+	if(t2)
 		enemy_bullet2.move();
-	if(enemy_bullet.get_y() <= 272&& enemy_bullet.get_y() >= 270)
+	if(enemy_bullet1.get_y() <= 292&& enemy_bullet1.get_y() >= 290)
 	{
-		if(!t)
+		if(!t2)
 		set_start_position(enemy_bullet2, enemy);
 		pictureBox10->Visible = true;
-		t = true;
+		t2 = true;
 	}
-	bull_cycle(enemy_bullet);
+	if (t3)
+		enemy_bullet3.move();
+	if (enemy_bullet1.get_y() <= 442 && enemy_bullet1.get_y() >= 440)
+	{
+		if (!t3)
+			set_start_position(enemy_bullet3, enemy);
+		pictureBox11->Visible = true;
+		t3 = true;
+	}
+	bull_cycle(enemy_bullet1);
 	bull_cycle(enemy_bullet2);
+	bull_cycle(enemy_bullet3);
 }
 };
 }

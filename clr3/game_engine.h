@@ -44,8 +44,6 @@ public:
 
 class player : public base_object
 {
-private: 
-	int bullet_start_y;
 public:
 	player(int,int);
 	~player() {}

@@ -1,26 +1,30 @@
 #pragma once
 #include <cstdlib>
-//#include <string>
+#define FIELD_SIZE_MAX 570
+#define FIELD_SIZE_MIN 30
 
 class base_object 
 {
 protected:
-	int step, x, y, size_y;
+	int step;
+	int x;
+	int y;
+	int size_x;
+	int size_y;
 public:
 	base_object();
 	base_object(int);
 	~base_object() {}
-	void move();
-	void set_speed(int);
-	void disactive();
 	int get_x();
 	int get_y();
+	int get_size_x();
 	int get_size_y();
+	void set_speed(int);
+	void disactive();
+	void move();
 	bool object_destroyed(base_object&);
-	friend void fire(base_object&, base_object&);
-	friend bool block_collision(base_object&, base_object&);
-	friend bool box_collision(base_object&, base_object&);
-	friend void set_start_position(base_object&, base_object&);
+	friend bool collision(base_object&, base_object&);
+	friend void to_start_position(base_object&, base_object&);
 };
 
 class object : public base_object
@@ -51,8 +55,6 @@ public:
 	void right();
 	void up();
 	void down();
-	bool is_m_in_field(int&);
-	bool is_p_in_field(int&);
 };
 
 

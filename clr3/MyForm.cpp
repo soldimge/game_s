@@ -9,4 +9,3 @@ void main(array<String^>^ args) {
 	clr3::MyForm form;
 	Application::Run(%form);
 }
-

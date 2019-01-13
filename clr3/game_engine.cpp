@@ -1,63 +1,70 @@
 #include "game_engine.h"
 
+#define TO_THE_CENTER 23;
+#define FULL_FIELD_SIZE 600;
+#define BLOCK_SIZE_MIN 100;
+#define BLOCK_SIZE_MAX_MIN 200;
+
 // base_object
 
 base_object::base_object()
 {
 	step = -3;
+	size_x = 15;
 	size_y = 15;
 	disactive();
 }
 
 base_object::base_object(int s)
 {
-	size_y = 15;
-	disactive();
+	base_object();
 	step = -s;
 }
+
+int base_object::get_x() { return x; }
+int base_object::get_y() { return y; }
+int base_object::get_size_x() { return size_x; }
+int base_object::get_size_y() { return size_y; }
 
 void base_object::set_speed(int s)
 {
 	step = -s;
 }
+
 void base_object::disactive()
 {
-	x = 600;
-	y = 600;
-}
-void fire(base_object& bullet, base_object& user)
-{
-	bullet.x = user.x + 23; 
-	bullet.y = user.y;
+	x = FULL_FIELD_SIZE;
+	y = FULL_FIELD_SIZE;
 }
 
 void base_object::move()
 {
 	y += step;
 }
-void set_start_position(base_object& bullet, base_object& obj)
+
+void to_start_position(base_object& bullet, base_object& obj)
 {
-	bullet.x = obj.x + 23;
-	bullet.y = obj.y + 60;
+	if (bullet.step > 0)
+	{
+		bullet.x = obj.x + TO_THE_CENTER;
+		bullet.y = obj.y + obj.get_size_x();
+	}
+	else
+	{
+		bullet.x = obj.x + TO_THE_CENTER;
+		bullet.y = obj.y;
+	}
 }
 
-int base_object::get_x() { return x; }
-int base_object::get_y() { return y; }
-int base_object::get_size_y() { return size_y; }
-
-bool block_collision(base_object& us, base_object& smth)
+bool collision(base_object& us, base_object& smth)
 {
-	return (us.x >= smth.x - us.size_y && us.x <= smth.x + smth.size_y && us.y >= smth.y - 45 && us.y <= smth.y + 12) ? true : false;
-}
-
-bool box_collision(base_object& us, base_object& smth)
-{
-	return (us.x >= smth.x - us.size_y && us.x <= smth.x + smth.size_y && us.y >= smth.y - smth.size_y && us.y <= smth.y + smth.size_y) ? true : false;
+	return (us.x >= smth.x - us.size_x && us.x <= smth.x + smth.size_x 
+	     && us.y >= smth.y - us.size_y && us.y <= smth.y + smth.size_y) ? true : false;
 }
 
 bool base_object::object_destroyed(base_object& ob)
 {
-	return (ob.x >= x - 15 && ob.x <= x + size_y && ob.y >= y - 7 && ob.y <= y + 7) ? true : false;
+	return (ob.x >= x - 15 && ob.x <= x + size_x && ob.y >= y - 7 && ob.y <= y + 7) ? true : false;
 }
 
 // object
@@ -71,9 +78,9 @@ object::object()
 void object::renew()
 {
 	step = basic_speed + rand() % 4;
-	x = rand() % 400;
-	y = 10;
-	size_y = 100 + rand() % 200;
+	size_x = BLOCK_SIZE_MIN + rand() % BLOCK_SIZE_MAX_MIN;
+	x = FIELD_SIZE_MIN + rand() % (FIELD_SIZE_MAX - FIELD_SIZE_MIN - size_x);
+	y = FIELD_SIZE_MIN;
 }
 
 void object::set_basic_speed(int s)
@@ -85,15 +92,15 @@ void object::set_basic_speed(int s)
 
 present::present()
 {
+	step = 2;
+	size_x = 68;
 	renew();
 }
 
 void present::renew()
 {
-	step = 2;
-	x = 30 + rand() % 450;
-	y = 10;
-	size_y = 68;
+	x = FIELD_SIZE_MIN + rand() % (FIELD_SIZE_MAX - FIELD_SIZE_MIN - size_x);
+	y = FIELD_SIZE_MIN;
 }
 
 // player
@@ -103,39 +110,31 @@ player::player(int xx,int yy)
 	x = xx;
 	y = yy;
 	step = 60;
+	size_x = 60;
 	size_y = 60;
 }
 
 void player::left()
 {
-	if (is_m_in_field(x))
+	if (x > FIELD_SIZE_MIN)
 	x -= step;
 }
 
 void player::right() 
 {
-	if (is_p_in_field(x))
+	if (x < FIELD_SIZE_MAX - size_x)
 	x += step;
 }
 
 void player::up() 
 {
-	if (is_m_in_field(y))
+	if (y > FIELD_SIZE_MIN)
 	y -= step;
 }
 
 void player::down() 
 {
-	if(is_p_in_field(y))
+	if(y < FIELD_SIZE_MAX - size_y)
 	y += step;
 }
 
-bool player::is_m_in_field(int &xy)
-{
-	return (xy > 30 && xy <= 510) ? true : false;
-}
-
-bool player::is_p_in_field(int &xy)
-{
-	return (xy >= 30 && xy < 510) ? true : false;
-}

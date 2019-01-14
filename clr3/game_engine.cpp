@@ -1,9 +1,10 @@
 #include "game_engine.h"
 
-#define TO_THE_CENTER 23;
-#define FULL_FIELD_SIZE 600;
-#define BLOCK_SIZE_MIN 100;
-#define BLOCK_SIZE_MAX_MIN 200;
+#define TO_THE_CENTER 23
+#define OUT_OF_FIELD 600
+#define BLOCK_SIZE_MIN 100
+#define BLOCK_SIZE_MAX 300
+#define SPEED_RANGE 4
 
 // base_object
 
@@ -11,13 +12,12 @@ base_object::base_object()
 {
 	step = -3;
 	size_x = 15;
-	size_y = 15;
+	size_y = 12;
 	disactive();
 }
 
-base_object::base_object(int s)
+base_object::base_object(int s) : base_object()
 {
-	base_object();
 	step = -s;
 }
 
@@ -33,8 +33,8 @@ void base_object::set_speed(int s)
 
 void base_object::disactive()
 {
-	x = FULL_FIELD_SIZE;
-	y = FULL_FIELD_SIZE;
+	x = OUT_OF_FIELD;
+	y = OUT_OF_FIELD;
 }
 
 void base_object::move()
@@ -44,16 +44,11 @@ void base_object::move()
 
 void to_start_position(base_object& bullet, base_object& obj)
 {
+	bullet.x = obj.x + TO_THE_CENTER;
 	if (bullet.step > 0)
-	{
-		bullet.x = obj.x + TO_THE_CENTER;
 		bullet.y = obj.y + obj.get_size_x();
-	}
 	else
-	{
-		bullet.x = obj.x + TO_THE_CENTER;
 		bullet.y = obj.y;
-	}
 }
 
 bool collision(base_object& us, base_object& smth)
@@ -62,23 +57,18 @@ bool collision(base_object& us, base_object& smth)
 	     && us.y >= smth.y - us.size_y && us.y <= smth.y + smth.size_y) ? true : false;
 }
 
-bool base_object::object_destroyed(base_object& ob)
-{
-	return (ob.x >= x - 15 && ob.x <= x + size_x && ob.y >= y - 7 && ob.y <= y + 7) ? true : false;
-}
-
 // object
 
-object::object() 
+object::object() : base_object()
 {
+	size_y = 15;
 	basic_speed = 1;
-	renew();
 }
 
 void object::renew()
 {
-	step = basic_speed + rand() % 4;
-	size_x = BLOCK_SIZE_MIN + rand() % BLOCK_SIZE_MAX_MIN;
+	step = basic_speed + rand() % SPEED_RANGE;
+	size_x = BLOCK_SIZE_MIN + rand() % (BLOCK_SIZE_MAX - BLOCK_SIZE_MIN);
 	x = FIELD_SIZE_MIN + rand() % (FIELD_SIZE_MAX - FIELD_SIZE_MIN - size_x);
 	y = FIELD_SIZE_MIN;
 }
@@ -94,6 +84,7 @@ present::present()
 {
 	step = 2;
 	size_x = 68;
+	size_y = 68;
 	renew();
 }
 

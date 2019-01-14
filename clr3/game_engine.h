@@ -22,7 +22,6 @@ public:
 	void set_speed(int);
 	void disactive();
 	void move();
-	bool object_destroyed(base_object&);
 	friend bool collision(base_object&, base_object&);
 	friend void to_start_position(base_object&, base_object&);
 };

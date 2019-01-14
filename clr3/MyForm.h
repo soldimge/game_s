@@ -9,7 +9,7 @@ base_object bullet, enemy_bullet1(-3), enemy_bullet2(-3), enemy_bullet3(-3);
 // 
 // Players
 //
-player user(270, 390),enemy(270,30);
+player user(270, 390), enemy(270,30);
 
 namespace clr3 {
 	using namespace System;
@@ -340,10 +340,10 @@ namespace clr3 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->ClientSize = System::Drawing::Size(600, 600);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox11);
 			this->Controls->Add(this->pictureBox9);
 			this->Controls->Add(this->pictureBox10);
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox12);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->pictureBox8);
@@ -380,7 +380,7 @@ namespace clr3 {
 #pragma endregion
 
 #define ENEMY_REACTION 170
-#define BOSS_APPEARING 99
+#define BOSS_APPEARING 40
 #define	PRESENT_APPEARING 5
 #define BLOCK2_APPEARING 3
 #define	SECS_OF_BONUS 10
@@ -391,6 +391,7 @@ namespace clr3 {
 	pictureBox14->Visible = false;
 	pictureBox1->Visible = true;
 	pictureBox3->Visible = true;
+	white_block.renew();
 	timer2->Enabled = true;
 	}
 
@@ -409,8 +410,9 @@ namespace clr3 {
 			if (!timer1->Enabled)
 			{
 				to_start_position(bullet,user);
-				timer1->Enabled = true;  break;
+				timer1->Enabled = true;  
 			}
+			break;
 		default: break;
 		}
 		this->pictureBox1->Location = System::Drawing::Point(user.get_x(), user.get_y());
@@ -434,16 +436,21 @@ namespace clr3 {
 	int score = 0, secs_of_bonus = 0;
 
 	private: System::Void timer2_Tick(System::Object^  sender, System::EventArgs^  e) {
-		    if (score == BLOCK2_APPEARING) { timer3->Enabled = true; pictureBox4->Visible = true; }
+		    if (score == BLOCK2_APPEARING) 
+			{ 
+			timer3->Enabled = true; 
+			pictureBox4->Visible = true; 
+			red_block.renew();
+			}
 			pictureBox3->Location = System::Drawing::Point(white_block.get_x(), white_block.get_y());
 			pictureBox3->Size = System::Drawing::Size(white_block.get_size_x(), white_block.get_size_y());
 			white_block.move();
-			if (white_block.object_destroyed(bullet))
+			if(collision(white_block,bullet))
 			{
 				score++; 
 				coin->Play();
 			}
-			if (white_block.get_y() >= FIELD_SIZE_MAX || white_block.object_destroyed(bullet))
+			if (white_block.get_y() >= FIELD_SIZE_MAX || collision(white_block, bullet))
 			{
 				white_block.renew();
 			}
@@ -481,9 +488,9 @@ namespace clr3 {
 			pictureBox4->Location = System::Drawing::Point(red_block.get_x(), red_block.get_y());
 			pictureBox4->Size = System::Drawing::Size(red_block.get_size_x(), red_block.get_size_y());
 			red_block.move();
-			if (red_block.get_y() >= FIELD_SIZE_MAX || (red_block.object_destroyed(bullet)))
+			if (red_block.get_y() >= FIELD_SIZE_MAX || (collision(red_block, bullet)))
 			{
-			if (red_block.object_destroyed(bullet))
+			if (collision(red_block, bullet))
 			{
 				score++;
 				coin->Play();
@@ -557,9 +564,9 @@ namespace clr3 {
 			if (collision(bullet,enemy))
 				stage_clear->Play();
 		}
-		if (enemy_bullet.get_y() >= FIELD_SIZE_MAX || (enemy_bullet.object_destroyed(bullet)))
+		if (enemy_bullet.get_y() >= FIELD_SIZE_MAX || (collision(enemy_bullet, bullet)))
 		{
-			if (enemy_bullet.object_destroyed(bullet))
+			if (collision(enemy_bullet, bullet))
 			{
 				timer1->Enabled = false;
 				pictureBox2->Visible = false;

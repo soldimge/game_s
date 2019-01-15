@@ -15,12 +15,12 @@ namespace clr3 {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	private:
-	System::Media::SoundPlayer^ sound1;
-	System::Media::SoundPlayer^ die;
-	System::Media::SoundPlayer^ powerup;
-	System::Media::SoundPlayer^ stage_clear;
-	System::Media::SoundPlayer^ coin;
-	System::Media::SoundPlayer^ startmenu;
+		System::Media::SoundPlayer^ sound1;
+		System::Media::SoundPlayer^ die;
+		System::Media::SoundPlayer^ powerup;
+		System::Media::SoundPlayer^ stage_clear;
+		System::Media::SoundPlayer^ coin;
+		System::Media::SoundPlayer^ startmenu;
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
 	private: System::Windows::Forms::Timer^  timer1;
 	private: System::Windows::Forms::Timer^  timer2;
@@ -44,12 +44,13 @@ namespace clr3 {
 	private: System::Windows::Forms::PictureBox^  pictureBox12;
 
 	public:
-		MyForm(void);
+		MyForm();
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
 		/// </summary>
 		~MyForm();
+
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	protected:
 
@@ -95,6 +96,12 @@ namespace clr3 {
 			this->pictureBox12 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox14 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox13 = (gcnew System::Windows::Forms::PictureBox());
+			this->sound1 = (gcnew System::Media::SoundPlayer());
+			this->die = (gcnew System::Media::SoundPlayer());
+			this->powerup = (gcnew System::Media::SoundPlayer());
+			this->stage_clear = (gcnew System::Media::SoundPlayer());
+			this->coin = (gcnew System::Media::SoundPlayer());
+			this->startmenu = (gcnew System::Media::SoundPlayer());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
@@ -110,15 +117,6 @@ namespace clr3 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox14))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox13))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// sounds
-			// 
-			this->sound1 = gcnew System::Media::SoundPlayer();
-			this->die = gcnew System::Media::SoundPlayer();
-			this->powerup = gcnew System::Media::SoundPlayer();
-			this->stage_clear = gcnew System::Media::SoundPlayer();
-			this->coin = gcnew System::Media::SoundPlayer();
-			this->startmenu = gcnew System::Media::SoundPlayer();
 			// 
 			// pictureBox1
 			// 
@@ -312,6 +310,48 @@ namespace clr3 {
 			this->pictureBox13->TabStop = false;
 			this->pictureBox13->Visible = false;
 			// 
+			// sound1
+			// 
+			this->sound1->LoadTimeout = 10000;
+			this->sound1->SoundLocation = L"";
+			this->sound1->Stream = nullptr;
+			this->sound1->Tag = nullptr;
+			// 
+			// die
+			// 
+			this->die->LoadTimeout = 10000;
+			this->die->SoundLocation = L"";
+			this->die->Stream = nullptr;
+			this->die->Tag = nullptr;
+			// 
+			// powerup
+			// 
+			this->powerup->LoadTimeout = 10000;
+			this->powerup->SoundLocation = L"";
+			this->powerup->Stream = nullptr;
+			this->powerup->Tag = nullptr;
+			// 
+			// stage_clear
+			// 
+			this->stage_clear->LoadTimeout = 10000;
+			this->stage_clear->SoundLocation = L"";
+			this->stage_clear->Stream = nullptr;
+			this->stage_clear->Tag = nullptr;
+			// 
+			// coin
+			// 
+			this->coin->LoadTimeout = 10000;
+			this->coin->SoundLocation = L"";
+			this->coin->Stream = nullptr;
+			this->coin->Tag = nullptr;
+			// 
+			// startmenu
+			// 
+			this->startmenu->LoadTimeout = 10000;
+			this->startmenu->SoundLocation = L"";
+			this->startmenu->Stream = nullptr;
+			this->startmenu->Tag = nullptr;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -358,16 +398,16 @@ namespace clr3 {
 #pragma endregion
 
 	private: 
-	System::Void pictureBox12_Click(System::Object^  sender, System::EventArgs^  e);
-	System::Void button1_Click(System::Object^  sender, System::EventArgs^  e); 
-	System::Void MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
-	System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e);
-	System::Void timer2_Tick(System::Object^  sender, System::EventArgs^  e);
-	System::Void timer3_Tick(System::Object^  sender, System::EventArgs^  e);
-	System::Void timer4_Tick(System::Object^  sender, System::EventArgs^  e);
-	System::Void timer5_Tick(System::Object^  sender, System::EventArgs^  e);
-	System::Void timer6_Tick(System::Object^  sender, System::EventArgs^  e);
-	void bull_cycle(base_object& enemy_bullet);
-	System::Void timer7_Tick(System::Object^  sender, System::EventArgs^  e);
+		System::Void pictureBox12_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void button1_Click(System::Object^  sender, System::EventArgs^  e); 
+		System::Void MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e);
+		System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e);
+		System::Void timer2_Tick(System::Object^  sender, System::EventArgs^  e);
+		System::Void timer3_Tick(System::Object^  sender, System::EventArgs^  e);
+		System::Void timer4_Tick(System::Object^  sender, System::EventArgs^  e);
+		System::Void timer5_Tick(System::Object^  sender, System::EventArgs^  e);
+		System::Void timer6_Tick(System::Object^  sender, System::EventArgs^  e);
+		void bull_cycle(base_object&);
+		System::Void timer7_Tick(System::Object^  sender, System::EventArgs^  e);
 };
 }

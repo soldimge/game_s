@@ -12,7 +12,7 @@ base_object::base_object()
 {
 	step = -3;
 	size_x = 15;
-	size_y = 12;
+	size_y = 15;
 	disactive();
 }
 
@@ -54,14 +54,13 @@ void to_start_position(base_object& bullet, base_object& obj)
 bool collision(base_object& us, base_object& smth)
 {
 	return (us.x >= smth.x - us.size_x && us.x <= smth.x + smth.size_x 
-	     && us.y >= smth.y - us.size_y && us.y <= smth.y + smth.size_y) ? true : false;
+	     && us.y >= smth.y - us.size_y && us.y <= smth.y + smth.size_y-smth.step) ? true : false;
 }
 
 // object
 
 object::object() : base_object()
 {
-	size_y = 15;
 	basic_speed = 1;
 }
 

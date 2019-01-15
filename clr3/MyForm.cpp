@@ -1,9 +1,12 @@
 #include "MyForm.h"
 #define ENEMY_REACTION 170
-#define BOSS_APPEARING 99
-#define	PRESENT_APPEARING 25
-#define BLOCK2_APPEARING 3
+#define BOSS_APPEARING_SCORE 0
+#define	PRESENT_APPEARING_SCORE 25
+#define BLOCK2_APPEARING_SCORE 3
 #define	SECS_OF_BONUS 10
+#define	ENEMY_BULLET_SPEED -3
+#define	ENEMY_BULLET2_START 290
+#define	ENEMY_BULLET3_START 440
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -16,13 +19,12 @@ void main(array<String^>^ args)
 	clr3::MyForm form;
 	Application::Run(%form);
 }
-
 // 
 // Objects
 //
 object white_block, red_block;
 present present_box;
-base_object bullet, enemy_bullet1(-3), enemy_bullet2(-3), enemy_bullet3(-3);
+base_object bullet, enemy_bullet1(ENEMY_BULLET_SPEED), enemy_bullet2(ENEMY_BULLET_SPEED), enemy_bullet3(ENEMY_BULLET_SPEED);
 // 
 // Players
 //
@@ -98,7 +100,8 @@ void clr3::MyForm::timer1_Tick(System::Object^  sender, System::EventArgs^  e)
 		bullet.move();
 		pictureBox2->Location = System::Drawing::Point(bullet.get_x(), bullet.get_y());
 	}
-	else {
+	else
+	{
 		timer1->Enabled = false;
 		pictureBox2->Visible = false;
 		bullet.disactive();
@@ -107,7 +110,7 @@ void clr3::MyForm::timer1_Tick(System::Object^  sender, System::EventArgs^  e)
 
 void clr3::MyForm::timer2_Tick(System::Object^  sender, System::EventArgs^  e)
 {
-	if (score == BLOCK2_APPEARING)
+	if (score == BLOCK2_APPEARING_SCORE)
 	{
 		timer3->Enabled = true;
 		pictureBox4->Visible = true;
@@ -134,11 +137,11 @@ void clr3::MyForm::timer2_Tick(System::Object^  sender, System::EventArgs^  e)
 		button1->Visible = true;
 	}
 	this->Text = "Score: " + Convert::ToString(score);
-	if (score >= PRESENT_APPEARING && score % PRESENT_APPEARING == 0 && timer5->Enabled == false)
+	if (score >= PRESENT_APPEARING_SCORE && score % PRESENT_APPEARING_SCORE == 0 && timer5->Enabled == false)
 		timer4->Enabled = true;
 	white_block.set_basic_speed(score / 30 + 1);
 	red_block.set_basic_speed(score / 30 + 1);
-	if (score == BOSS_APPEARING)
+	if (score == BOSS_APPEARING_SCORE)
 	{
 		sound1->PlayLooping();
 		timer2->Enabled = false;
@@ -222,7 +225,7 @@ void clr3::MyForm::timer6_Tick(System::Object^  sender, System::EventArgs^  e)
 
 void clr3::MyForm::bull_cycle(base_object& enemy_bullet)
 {
-	if (collision(user, enemy_bullet) || collision(bullet, enemy) || collision(enemy, user))
+	if (collision(user, enemy_bullet) || collision(enemy, bullet) || collision(enemy, user))
 	{
 		pictureBox2->Visible = false;
 		timer6->Enabled = false;
@@ -235,7 +238,7 @@ void clr3::MyForm::bull_cycle(base_object& enemy_bullet)
 			die->Play();
 			pictureBox13->Visible = true;
 		}
-		if (collision(bullet, enemy))
+		if (collision(enemy, bullet))
 			stage_clear->Play();
 	}
 	if (enemy_bullet.get_y() >= FIELD_SIZE_MAX || (collision(enemy_bullet, bullet)))
@@ -250,14 +253,15 @@ void clr3::MyForm::bull_cycle(base_object& enemy_bullet)
 	}
 }
 
-void clr3::MyForm::timer7_Tick(System::Object^  sender, System::EventArgs^  e) {
+void clr3::MyForm::timer7_Tick(System::Object^  sender, System::EventArgs^  e) 
+{
 	pictureBox9->Location = System::Drawing::Point(enemy_bullet1.get_x(), enemy_bullet1.get_y());
 	pictureBox10->Location = System::Drawing::Point(enemy_bullet2.get_x(), enemy_bullet2.get_y());
 	pictureBox11->Location = System::Drawing::Point(enemy_bullet3.get_x(), enemy_bullet3.get_y());
 	enemy_bullet1.move();
 	if (t2)
 		enemy_bullet2.move();
-	if (enemy_bullet1.get_y() <= 292 && enemy_bullet1.get_y() >= 290)
+	if (enemy_bullet1.get_y() >= ENEMY_BULLET2_START)
 	{
 		if (!t2)
 			to_start_position(enemy_bullet2, enemy);
@@ -266,7 +270,7 @@ void clr3::MyForm::timer7_Tick(System::Object^  sender, System::EventArgs^  e) {
 	}
 	if (t3)
 		enemy_bullet3.move();
-	if (enemy_bullet1.get_y() <= 442 && enemy_bullet1.get_y() >= 440)
+	if (enemy_bullet1.get_y() >= ENEMY_BULLET3_START)
 	{
 		if (!t3)
 			to_start_position(enemy_bullet3, enemy);

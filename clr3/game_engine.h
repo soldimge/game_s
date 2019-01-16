@@ -1,8 +1,22 @@
+/*!
+\file 
+\brief Заголовочный файл с описанием классов
+\author Solomonov
+
+Данный файл содержит в себе определения интерфейсов классов, используемых в программе. 
+Объявлены переменные и прототипы методов классов.
+*/
 #pragma once
 #include <cstdlib>
 #define FIELD_SIZE_MAX 570
 #define FIELD_SIZE_MIN 30
 
+/**
+ * @brief      Базовый класс. Class for base object.
+ * 
+ *  Базовый класс для классов object, object, player.
+ *  Пули, т.е. bullet, enemy_bullet и т.д. являются объектами этого класса.
+ */
 class base_object 
 {
 protected:
@@ -26,6 +40,12 @@ public:
 	friend void to_start_position(base_object&, base_object&);
 };
 
+/**
+ * @brief      Дочерний класс. Class for object.
+ * 
+ * Дочерний класс, который отнаследован от ранее созданного класса base_object.
+ * Блоки white_block, red_block являются объектами этого класса.
+ */
 class object : public base_object
 {
 private: 
@@ -37,6 +57,12 @@ public:
 	void set_basic_speed(int);
 };
 
+/**
+ * @brief      Дочерний класс. Class for present.
+ * 
+ * Дочерний класс, который отнаследован от ранее созданного класса base_object.
+ * Подарок present_box  является объектами этого класса.
+ */
 class present : public base_object
 {
 public:
@@ -45,6 +71,12 @@ public:
 	void renew();
 };
 
+/**
+ * @brief      Дочерний класс. Class for player.
+ * 
+ * Дочерний класс, который отнаследован от ранее созданного класса base_object.
+ * Игроки user и enemy  является объектами этого класса.
+ */
 class player : public base_object
 {
 public:

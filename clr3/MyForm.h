@@ -1,3 +1,10 @@
+/*!
+\file 
+\brief Заголовочный файл для Windows Forms
+\author Solomonov
+
+Данный файл содержит в себе интерфейс класса MyForm и код сгенерированный Windows Form Designer.
+*/
 #pragma once
 #include "game_engine.h"
 

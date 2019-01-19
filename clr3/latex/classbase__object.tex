@@ -1,4 +1,4 @@
-\hypertarget{classbase__object}{}\section{base\+\_\+object Class Reference}
+\hypertarget{classbase__object}{}\section{Класс base\+\_\+object}
 \label{classbase__object}\index{base\_object@{base\_object}}
 
 
@@ -9,13 +9,13 @@
 
 {\ttfamily \#include $<$game\+\_\+engine.\+h$>$}
 
-Inheritance diagram for base\+\_\+object\+:\begin{figure}[H]
+Граф наследования\+:base\+\_\+object\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{classbase__object}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Открытые члены}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classbase__object_a6c3928ac6aaf6b645c18ea8b7717dbd6}\label{classbase__object_a6c3928ac6aaf6b645c18ea8b7717dbd6}} 
@@ -24,22 +24,22 @@ Inheritance diagram for base\+\_\+object\+:\begin{figure}[H]
 \mbox{\hyperlink{classbase__object_aae443eac7c3fe83ea76ce4006359aaa7}{base\+\_\+object}} (int)
 \begin{DoxyCompactList}\small\item\em Коструктор объекта \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classbase__object_a53e9ce3dd05e9de706e05a5ec9df8d1e}{get\+\_\+x}} ()
-\begin{DoxyCompactList}\small\item\em Функция получения ширины объекта. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classbase__object_ad1ff677f0809e24496f87c27ea2c65ec}{get\+\_\+y}} ()
 \begin{DoxyCompactList}\small\item\em Функция получения координаты X объекта. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classbase__object_a9b018abfe21170353c163cad9511f02c}{get\+\_\+size\+\_\+x}} ()
+int \mbox{\hyperlink{classbase__object_ad1ff677f0809e24496f87c27ea2c65ec}{get\+\_\+y}} ()
 \begin{DoxyCompactList}\small\item\em Функция получения координаты Y объекта. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classbase__object_a9b018abfe21170353c163cad9511f02c}{get\+\_\+size\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Функция получения ширины объекта. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classbase__object_a58391e1cc3093e8b6ee1aaeadd8335d5}{get\+\_\+size\+\_\+y}} ()
 \begin{DoxyCompactList}\small\item\em Функция получения высоты объекта. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classbase__object_a6aa28faa9734744b5992da58121e6095}{set\+\_\+speed}} (int)
 \begin{DoxyCompactList}\small\item\em Функция установки шага(скорости) \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classbase__object_a87c6fdcdcca46c1839d0bf7fae110574}\label{classbase__object_a87c6fdcdcca46c1839d0bf7fae110574}} 
 void \mbox{\hyperlink{classbase__object_a87c6fdcdcca46c1839d0bf7fae110574}{disactive}} ()
-\begin{DoxyCompactList}\small\item\em \{ Функция делает объект неактивным (присваивает координаты, находящиеся вне игрового поля) \} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Функция делает объект неактивным (присваивает координаты, находящиеся вне игрового поля) \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classbase__object_ae472a40a19f6419fca4aa35c91d48542}\label{classbase__object_ae472a40a19f6419fca4aa35c91d48542}} 
 void \mbox{\hyperlink{classbase__object_ae472a40a19f6419fca4aa35c91d48542}{move}} ()
-\begin{DoxyCompactList}\small\item\em \{ Функция движения объекта \} \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Protected Attributes}
+\begin{DoxyCompactList}\small\item\em Функция движения объекта \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Защищенные данные}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classbase__object_a36f88ce36cd068418e1118768a2141b3}\label{classbase__object_a36f88ce36cd068418e1118768a2141b3}} 
@@ -57,21 +57,21 @@ int {\bfseries size\+\_\+x}
 \mbox{\Hypertarget{classbase__object_a481776fb475d298bf7e9012568f16a2e}\label{classbase__object_a481776fb475d298bf7e9012568f16a2e}} 
 int {\bfseries size\+\_\+y}
 \end{DoxyCompactItemize}
-\subsection*{Friends}
+\subsection*{Друзья}
 \begin{DoxyCompactItemize}
 \item 
 bool \mbox{\hyperlink{classbase__object_a38cd5b11f00fd31a9939b0c6e293d593}{collision}} (\mbox{\hyperlink{classbase__object}{base\+\_\+object}} \&, \mbox{\hyperlink{classbase__object}{base\+\_\+object}} \&)
-\begin{DoxyCompactList}\small\item\em \{ Функция проверки на столкновение между объектами\} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Функция проверки на столкновение между объектами \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}{to\+\_\+start\+\_\+position}} (\mbox{\hyperlink{classbase__object}{base\+\_\+object}} \&, \mbox{\hyperlink{classbase__object}{base\+\_\+object}} \&)
-\begin{DoxyCompactList}\small\item\em \{ Функция установки объекта (пули) на стартовую позицию \} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Функция установки объекта (пули) на стартовую позицию \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\subsection{Подробное описание}
 Базовый класс. Class for base object. 
 
 Базовый класс для классов object, object, player. Пули, т.\+е. bullet, enemy\+\_\+bullet и т.\+д. являются объектами этого класса. 
 
-\subsection{Constructor \& Destructor Documentation}
+\subsection{Конструктор(ы)}
 \mbox{\Hypertarget{classbase__object_aae443eac7c3fe83ea76ce4006359aaa7}\label{classbase__object_aae443eac7c3fe83ea76ce4006359aaa7}} 
 \index{base\_object@{base\_object}!base\_object@{base\_object}}
 \index{base\_object@{base\_object}!base\_object@{base\_object}}
@@ -83,13 +83,13 @@ void \mbox{\hyperlink{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}{to\+\
 Коструктор объекта 
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em s} & \{ Шаг \} \\
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em s} & Шаг \\
 \hline
 \end{DoxyParams}
 
 
-\subsection{Member Function Documentation}
+\subsection{Методы}
 \mbox{\Hypertarget{classbase__object_a9b018abfe21170353c163cad9511f02c}\label{classbase__object_a9b018abfe21170353c163cad9511f02c}} 
 \index{base\_object@{base\_object}!get\_size\_x@{get\_size\_x}}
 \index{get\_size\_x@{get\_size\_x}!base\_object@{base\_object}}
@@ -98,10 +98,10 @@ void \mbox{\hyperlink{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}{to\+\
 
 
 
-Функция получения координаты Y объекта. 
+Функция получения ширины объекта. 
 
-\begin{DoxyReturn}{Returns}
-Координата Y объекта. 
+\begin{DoxyReturn}{Возвращает}
+Ширина объекта. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classbase__object_a58391e1cc3093e8b6ee1aaeadd8335d5}\label{classbase__object_a58391e1cc3093e8b6ee1aaeadd8335d5}} 
 \index{base\_object@{base\_object}!get\_size\_y@{get\_size\_y}}
@@ -113,7 +113,7 @@ void \mbox{\hyperlink{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}{to\+\
 
 Функция получения высоты объекта. 
 
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Возвращает}
 Высота объекта. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classbase__object_a53e9ce3dd05e9de706e05a5ec9df8d1e}\label{classbase__object_a53e9ce3dd05e9de706e05a5ec9df8d1e}} 
@@ -124,10 +124,10 @@ void \mbox{\hyperlink{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}{to\+\
 
 
 
-Функция получения ширины объекта. 
+Функция получения координаты X объекта. 
 
-\begin{DoxyReturn}{Returns}
-Ширина объекта. 
+\begin{DoxyReturn}{Возвращает}
+Координата X объекта. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classbase__object_ad1ff677f0809e24496f87c27ea2c65ec}\label{classbase__object_ad1ff677f0809e24496f87c27ea2c65ec}} 
 \index{base\_object@{base\_object}!get\_y@{get\_y}}
@@ -137,10 +137,10 @@ void \mbox{\hyperlink{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}{to\+\
 
 
 
-Функция получения координаты X объекта. 
+Функция получения координаты Y объекта. 
 
-\begin{DoxyReturn}{Returns}
-Координата X объекта. 
+\begin{DoxyReturn}{Возвращает}
+Координата Y объекта. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classbase__object_a6aa28faa9734744b5992da58121e6095}\label{classbase__object_a6aa28faa9734744b5992da58121e6095}} 
 \index{base\_object@{base\_object}!set\_speed@{set\_speed}}
@@ -153,13 +153,13 @@ void \mbox{\hyperlink{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}{to\+\
 Функция установки шага(скорости) 
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em s} & \{ Шаг \} \\
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\texttt{ in}}  & {\em s} & Шаг \\
 \hline
 \end{DoxyParams}
 
 
-\subsection{Friends And Related Function Documentation}
+\subsection{Документация по друзьям класса и функциям, относящимся к классу}
 \mbox{\Hypertarget{classbase__object_a38cd5b11f00fd31a9939b0c6e293d593}\label{classbase__object_a38cd5b11f00fd31a9939b0c6e293d593}} 
 \index{base\_object@{base\_object}!collision@{collision}}
 \index{collision@{collision}!base\_object@{base\_object}}
@@ -168,17 +168,17 @@ void \mbox{\hyperlink{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}{to\+\
 
 
 
-\{ Функция проверки на столкновение между объектами\} 
+Функция проверки на столкновение между объектами 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Аргументы}
 {\em us} & объект 1 \\
 \hline
 {\em smth} & объект 2\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\{ true -\/ если столкновение, false -\/ при его отсутвии \} 
+\begin{DoxyReturn}{Возвращает}
+true -\/ если столкновение, false -\/ при его отсутвии 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}\label{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}} 
 \index{base\_object@{base\_object}!to\_start\_position@{to\_start\_position}}
@@ -188,10 +188,10 @@ void \mbox{\hyperlink{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}{to\+\
 
 
 
-\{ Функция установки объекта (пули) на стартовую позицию \} 
+Функция установки объекта (пули) на стартовую позицию 
 
 
-\begin{DoxyParams}{Parameters}
+\begin{DoxyParams}{Аргументы}
 {\em bullet} & Пуля \\
 \hline
 {\em obj} & Объект владелец пули \\
@@ -199,7 +199,7 @@ void \mbox{\hyperlink{classbase__object_a712e0cdc0ba13dc26f836adeccdc9264}{to\+\
 \end{DoxyParams}
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{game__engine_8h}{game\+\_\+engine.\+h}}\item 
 \mbox{\hyperlink{game__engine_8cpp}{game\+\_\+engine.\+cpp}}\end{DoxyCompactItemize}

@@ -6,23 +6,23 @@
 Данный файл содержит в себе реализации функции и методов класса, объявленного в файле MyForm.h.
 */
 #include "MyForm.h"
-#define ENEMY_REACTION 170
-#define BOSS_APPEARING_SCORE 99
+#define ENEMY_REACTION			170
+#define BOSS_APPEARING_SCORE	99
 #define	PRESENT_APPEARING_SCORE 25
-#define BLOCK2_APPEARING_SCORE 3
-#define	SECS_OF_BONUS 10
-#define	ENEMY_BULLET_SPEED -3
-#define	ENEMY_BULLET2_START 290
-#define	ENEMY_BULLET3_START 440
+#define BLOCK2_APPEARING_SCORE	3
+#define	SECS_OF_BONUS			10
+#define	ENEMY_BULLET_SPEED		-3
+#define	ENEMY_BULLET2_START		290
+#define	ENEMY_BULLET3_START		440
 
 using namespace System;
 using namespace System::Windows::Forms;
 [STAThread]
 
 /**
- * @brief      { Функция вызывающая выполнение формы }
+ * @brief      Функция вызывающая выполнение формы. Точка входа в программу.
  *
- * @param[in]  args  { аргументы командной строки }
+ * @param[in]  args  аргументы командной строки 
  */
 void main(array<String^>^ args) 
 {
@@ -44,7 +44,8 @@ base_object	enemy_bullet3(ENEMY_BULLET_SPEED); ///< Пуля босса 3
 // 
 // Players
 //
-player user(270, 390), enemy(270, 30);
+player 	user(270, 390);///< Игрок
+player	enemy(270, 30);///< Босс
 // 
 // Other
 //
@@ -52,10 +53,12 @@ int score = 0; ///< Счёт
 int secs_of_bonus = 0; ///< Секунд бонуса
 bool t2; ///< Условие запуска второй пули босса
 bool t3; ///< Условие запуска третьей пули босса
+
+using namespace clr3;
 /**
  * @brief      Коструктор формы Windows Forms
  */
-clr3::MyForm::MyForm()
+MyForm::MyForm()
 {
 	InitializeComponent();
 	sound1->SoundLocation = "sounds\\Sound.wav";
@@ -69,7 +72,7 @@ clr3::MyForm::MyForm()
 /**
  * @brief      Деструктор формы Windows Forms
  */
-clr3::MyForm::~MyForm()
+MyForm::~MyForm()
 {
 	if (components)
 	{
@@ -78,12 +81,12 @@ clr3::MyForm::~MyForm()
 }
 
 /**
- * @brief      { Функция обработчик нажатия на картинку }
+ * @brief      Функция обработчик нажатия на картинку 
  *
- * @param[in]  sender  { объект, вызывающий обработчик }
- * @param[in]  e  { аргумент обработчика }
+ * @param[in]  sender	объект, вызывающий обработчик 
+ * @param[in]  e	аргумент обработчика 
  */
-void clr3::MyForm ::pictureBox12_Click(System::Object^  sender, System::EventArgs^  e) 
+void MyForm ::pictureBox12_Click(System::Object^  sender, System::EventArgs^  e) 
 {
 	pictureBox12->Visible = false;
 	startmenu->Stop();
@@ -95,23 +98,23 @@ void clr3::MyForm ::pictureBox12_Click(System::Object^  sender, System::EventArg
 }
 
 /**
- * @brief      { Функция обработчик нажатия на кнопку }
+ * @brief      Функция обработчик нажатия на кнопку 
  *
- * @param[in]  sender  { объект, вызывающий обработчик }
- * @param[in]  e  { аргумент обработчика }
+ * @param[in]  sender	объект, вызывающий обработчик 
+ * @param[in]  e	аргумент обработчика 
  */
-void clr3::MyForm::button1_Click(System::Object^  sender, System::EventArgs^  e)
+void MyForm::button1_Click(System::Object^  sender, System::EventArgs^  e)
 {
 	Application::Restart();
 }
 
 /**
- * @brief      { Функция обработчик нажатия на клавишу клавиатуры }
+ * @brief      Функция обработчик нажатия на клавишу клавиатуры 
  *
- * @param[in]  sender  { объект, вызывающий обработчик }
- * @param[in]  e  { аргумент обработчика }
+ * @param[in]  sender	объект, вызывающий обработчик 
+ * @param[in]  e	аргумент обработчика 
  */
-void clr3::MyForm::MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) 
+void MyForm::MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) 
 {
 	switch (e->KeyValue)
 	{
@@ -132,12 +135,12 @@ void clr3::MyForm::MyForm_KeyDown(System::Object^  sender, System::Windows::Form
 }
 
 /**
- * @brief      { Функция таймер. Отвечает за цикл движения пули }
+ * @brief       Функция таймер. Отвечает за цикл движения пули 
  *
- * @param[in]  sender  { объект, вызывающий обработчик }
- * @param[in]  e  { аргумент обработчика }
+ * @param[in]  sender   объект, вызывающий обработчик 
+ * @param[in]  e   аргумент обработчика 
  */
-void clr3::MyForm::timer1_Tick(System::Object^  sender, System::EventArgs^  e)
+void MyForm::timer1_Tick(System::Object^  sender, System::EventArgs^  e)
 {
 	pictureBox2->Location = System::Drawing::Point(bullet.get_x(), bullet.get_y());
 	pictureBox2->Visible = true;
@@ -155,13 +158,13 @@ void clr3::MyForm::timer1_Tick(System::Object^  sender, System::EventArgs^  e)
 }
 
 /**
- * @brief      { Функция таймер. Отвечает за цикл движение белого блока, подсчет очков, 
- * 				появление подарков и босса, а также проверка на стоклконвение с блоками }
+ * @brief       Функция таймер. Отвечает за цикл движение белого блока, подсчет очков, 
+ * 				появление подарков и босса, а также проверка на стоклконвение с блоками 
  * 
- * @param[in]  sender  { объект, вызывающий обработчик }
- * @param[in]  e  { аргумент обработчика }
+ * @param[in]  sender   объект, вызывающий обработчик 
+ * @param[in]  e   аргумент обработчика 
  */
-void clr3::MyForm::timer2_Tick(System::Object^  sender, System::EventArgs^  e)
+void MyForm::timer2_Tick(System::Object^  sender, System::EventArgs^  e)
 {
 	if (score == BLOCK2_APPEARING_SCORE)
 	{
@@ -211,12 +214,12 @@ void clr3::MyForm::timer2_Tick(System::Object^  sender, System::EventArgs^  e)
 }
 
 /**
- * @brief      { Функция таймер. Отвечает за цикл движения красного блока }
+ * @brief       Функция таймер. Отвечает за цикл движения красного блока 
  *
- * @param[in]  sender  { объект, вызывающий обработчик }
- * @param[in]  e  { аргумент обработчика }
+ * @param[in]  sender   объект, вызывающий обработчик 
+ * @param[in]  e   аргумент обработчика 
  */
-void clr3::MyForm::timer3_Tick(System::Object^  sender, System::EventArgs^  e) 
+void MyForm::timer3_Tick(System::Object^  sender, System::EventArgs^  e) 
 {
 	pictureBox4->Location = System::Drawing::Point(red_block.get_x(), red_block.get_y());
 	pictureBox4->Size = System::Drawing::Size(red_block.get_size_x(), red_block.get_size_y());
@@ -236,12 +239,12 @@ void clr3::MyForm::timer3_Tick(System::Object^  sender, System::EventArgs^  e)
 }
 
 /**
- * @brief      { Функция таймер. Отвечает за цикл движения подарка }
+ * @brief       Функция таймер. Отвечает за цикл движения подарка 
  *
- * @param[in]  sender  { объект, вызывающий обработчик }
- * @param[in]  e  { аргумент обработчика }
+ * @param[in]  sender   объект, вызывающий обработчик 
+ * @param[in]  e   аргумент обработчика 
  */
-void clr3::MyForm::timer4_Tick(System::Object^  sender, System::EventArgs^  e)
+void MyForm::timer4_Tick(System::Object^  sender, System::EventArgs^  e)
 {
 	pictureBox6->Location = System::Drawing::Point(present_box.get_x(), present_box.get_y());
 	pictureBox6->Visible = true;
@@ -260,12 +263,12 @@ void clr3::MyForm::timer4_Tick(System::Object^  sender, System::EventArgs^  e)
 }
 
 /**
- * @brief      { Функция таймер. Отвечает за бонус, полученный в подарке }
+ * @brief       Функция таймер. Отвечает за бонус, полученный в подарке 
  *
- * @param[in]  sender  { объект, вызывающий обработчик }
- * @param[in]  e  { аргумент обработчика }
+ * @param[in]  sender   объект, вызывающий обработчик 
+ * @param[in]  e   аргумент обработчика 
  */
-void clr3::MyForm::timer5_Tick(System::Object^  sender, System::EventArgs^  e)
+void MyForm::timer5_Tick(System::Object^  sender, System::EventArgs^  e)
 {
 	if (secs_of_bonus <= SECS_OF_BONUS)
 	{
@@ -283,12 +286,12 @@ void clr3::MyForm::timer5_Tick(System::Object^  sender, System::EventArgs^  e)
 }
 
 /**
- * @brief      {  Функция таймер. Отвечает за движение босса }
+ * @brief        Функция таймер. Отвечает за движение босса 
  *
- * @param[in]  sender  { объект, вызывающий обработчик }
- * @param[in]  e  { аргумент обработчика }
+ * @param[in]  sender   объект, вызывающий обработчик 
+ * @param[in]  e   аргумент обработчика 
  */
-void clr3::MyForm::timer6_Tick(System::Object^  sender, System::EventArgs^  e) 
+void MyForm::timer6_Tick(System::Object^  sender, System::EventArgs^  e) 
 {
 	if (!(bullet.get_x() + bullet.get_size_x() >= enemy.get_x() - enemy.get_size_x()
 		&& bullet.get_x() <= enemy.get_x() + 2 * enemy.get_size_x() 
@@ -303,12 +306,12 @@ void clr3::MyForm::timer6_Tick(System::Object^  sender, System::EventArgs^  e)
 }
 
 /**
- * @brief      { Функция обрабатывающая все события, которые могут произойти с любой 
- * 				пулей при игре против босса}
+ * @brief       Функция обрабатывающая все события, которые могут произойти с любой 
+ * 				пулей при игре против босса
  *
  * @param      enemy_bullet  Пуля
  */
-void clr3::MyForm::bull_cycle(base_object& enemy_bullet)
+void MyForm::bull_cycle(base_object& enemy_bullet)
 {
 	if (collision(user, enemy_bullet) || collision(enemy, bullet) || collision(enemy, user))
 	{
@@ -339,12 +342,12 @@ void clr3::MyForm::bull_cycle(base_object& enemy_bullet)
 }
 
 /**
- * @brief      { Функция таймер. Отвечает за стрельбу босса }
+ * @brief       Функция таймер. Отвечает за стрельбу босса 
  *
-* @param[in]  sender  { объект, вызывающий обработчик }
- * @param[in]  e  { аргумент обработчика }
+* @param[in]  sender   объект, вызывающий обработчик 
+ * @param[in]  e   аргумент обработчика 
  */
-void clr3::MyForm::timer7_Tick(System::Object^  sender, System::EventArgs^  e) 
+void MyForm::timer7_Tick(System::Object^  sender, System::EventArgs^  e) 
 {
 	pictureBox9->Location = System::Drawing::Point(enemy_bullet1.get_x(), enemy_bullet1.get_y());
 	pictureBox10->Location = System::Drawing::Point(enemy_bullet2.get_x(), enemy_bullet2.get_y());

@@ -7,11 +7,11 @@
 */
 #include "game_engine.h"
 
-#define TO_THE_CENTER 23
-#define OUT_OF_FIELD 600
-#define BLOCK_SIZE_MIN 100
-#define BLOCK_SIZE_MAX 300
-#define SPEED_RANGE 4
+#define TO_THE_CENTER	23
+#define OUT_OF_FIELD	600
+#define BLOCK_SIZE_MIN	100
+#define BLOCK_SIZE_MAX	300
+#define SPEED_RANGE		4
 
 // base_object
 
@@ -29,7 +29,7 @@ base_object::base_object()
 /**
  * @brief      Коструктор объекта
  *
- * @param[in]  s     { Шаг }
+ * @param[in]  s     Шаг
  */
 base_object::base_object(int s) : base_object()
 {
@@ -37,23 +37,23 @@ base_object::base_object(int s) : base_object()
 }
 
 /**
- * @brief      Функция получения ширины объекта.
- *
- * @return     Ширина объекта.
- */
-int base_object::get_x() { return x; }
-
-/**
  * @brief      Функция получения координаты X объекта.
  *
  * @return     Координата X объекта.
  */
-int base_object::get_y() { return y; }
+int base_object::get_x() { return x; }
 
 /**
  * @brief      Функция получения координаты Y объекта.
  *
  * @return     Координата Y объекта.
+ */
+int base_object::get_y() { return y; }
+
+/**
+ * @brief      Функция получения ширины объекта.
+ *
+ * @return     Ширина объекта.
  */
 int base_object::get_size_x() { return size_x; }
 
@@ -67,7 +67,7 @@ int base_object::get_size_y() { return size_y; }
 /**
  * @brief      Функция установки шага(скорости)
  *
- * @param[in]  s     { Шаг }
+ * @param[in]  s     Шаг
  */
 void base_object::set_speed(int s)
 {
@@ -75,8 +75,8 @@ void base_object::set_speed(int s)
 }
 
 /**
- * @brief      { Функция делает объект неактивным (присваивает координаты, 
- * 				находящиеся вне игрового поля) }
+ * @brief      Функция делает объект неактивным (присваивает координаты, 
+ * 				находящиеся вне игрового поля)
  */
 void base_object::disactive()
 {
@@ -85,7 +85,7 @@ void base_object::disactive()
 }
 
 /**
- * @brief      { Функция движения объекта }
+ * @brief       Функция движения объекта 
  */
 void base_object::move()
 {
@@ -93,7 +93,7 @@ void base_object::move()
 }
 
 /**
- * @brief      { Функция установки объекта (пули) на стартовую позицию }
+ * @brief       Функция установки объекта (пули) на стартовую позицию 
  *
  * @param      bullet  Пуля
  * @param      obj     Объект владелец пули
@@ -108,12 +108,12 @@ void to_start_position(base_object& bullet, base_object& obj)
 }
 
 /**
- * @brief      { Функция проверки на столкновение между объектами}
+ * @brief       Функция проверки на столкновение между объектами
  *
  * @param      us    объект 1
  * @param      smth  объект 2
  *
- * @return     { true - если столкновение, false - при его отсутвии }
+ * @return      true - если столкновение, false - при его отсутвии 
  */
 bool collision(base_object& us, base_object& smth)
 {
@@ -132,7 +132,7 @@ object::object() : base_object()
 }
 
 /**
- * @brief      { Функция запуска блока с новыми параметрами }
+ * @brief       Функция запуска блока с новыми параметрами 
  */
 void object::renew()
 {
@@ -145,7 +145,7 @@ void object::renew()
 /**
  * @brief      Функция установки базовой скорости
  *
- * @param[in]  s     { Базовая скорость блока }
+ * @param[in]  s      Базовая скорость блока 
  */
 void object::set_basic_speed(int s)
 {
@@ -166,7 +166,7 @@ present::present()
 }
 
 /**
- * @brief      {  Функция запуска подарка с новыми параметрами }
+ * @brief        Функция запуска подарка с новыми параметрами 
  */
 void present::renew()
 {
@@ -179,8 +179,8 @@ void present::renew()
 /**
  * @brief      Коструктор объекта 
  *
- * @param[in]  xx    { Стартовая координата X }
- * @param[in]  yy    { Стартовая координата Y }
+ * @param[in]  xx     Стартовая координата X 
+ * @param[in]  yy     Стартовая координата Y 
  */
 player::player(int xx,int yy)
 {
@@ -192,38 +192,46 @@ player::player(int xx,int yy)
 }
 
 /**
- * @brief      { Функция движения влево }
+ * @brief       Функция движения влево 
  */
 void player::left()
 {
 	if (x > FIELD_SIZE_MIN)
-	x -= step;
+	{
+		x -= step;
+	}
 }
 
 /**
- * @brief      { Функция движения вправо }
+ * @brief       Функция движения вправо 
  */
 void player::right() 
 {
 	if (x < FIELD_SIZE_MAX - size_x)
-	x += step;
+	{
+		x += step;
+	}
 }
 
 /**
- * @brief      { Функция движения вверх }
+ * @brief       Функция движения вверх 
  */
 void player::up() 
 {
 	if (y > FIELD_SIZE_MIN)
-	y -= step;
+	{
+		y -= step;
+	}
 }
 
 /**
- * @brief      { Функция движения вниз }
+ * @brief      Функция движения вниз 
  */
 void player::down() 
 {
 	if(y < FIELD_SIZE_MAX - size_y)
-	y += step;
+	{
+		y += step;
+	}
 }
 

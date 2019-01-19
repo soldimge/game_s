@@ -1,9 +1,9 @@
 /*!
 \file 
-\brief Заголовочный файл для Windows Forms
+\brief Р—Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р» РґР»СЏ Windows Forms
 \author Solomonov
 
-Данный файл содержит в себе интерфейс класса MyForm и код сгенерированный Windows Form Designer.
+Р”Р°РЅРЅС‹Р№ С„Р°Р№Р» СЃРѕРґРµСЂР¶РёС‚ РІ СЃРµР±Рµ РёРЅС‚РµСЂС„РµР№СЃ РєР»Р°СЃСЃР° MyForm Рё РєРѕРґ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅС‹Р№ Windows Form Designer.
 */
 #pragma once
 #include "game_engine.h"
@@ -16,9 +16,12 @@ namespace clr3 {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Сводка для MyForm
-	/// </summary>
+/**
+ * @brief      РљР»Р°СЃСЃ РЅРµРѕР±С…РѕРґРёРјС‹Р№ РґР»СЏ Windows Forms
+ * 
+ * РЎРіРµРЅРµСЂРёСЂРѕРІР°РЅ Windows Form Designer.
+ * Р”РѕР±Р°РІР»РµРЅС‹ РјРµС‚РѕРґС‹ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РґР»СЏ СѓРїР°СЂРІР»РµРЅРёСЏ РіСЂР°С„РёС‡РµСЃРєРёРјРё РѕР±СЉРµРєС‚Р°РјРё.
+ */
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	private:
@@ -53,9 +56,6 @@ namespace clr3 {
 	public:
 		MyForm();
 	protected:
-		/// <summary>
-		/// Освободить все используемые ресурсы.
-		/// </summary>
 		~MyForm();
 
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
@@ -68,14 +68,14 @@ namespace clr3 {
 
 	private:
 		/// <summary>
-		/// Обязательная переменная конструктора.
+		/// РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 		/// </summary>
 
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
+		/// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{

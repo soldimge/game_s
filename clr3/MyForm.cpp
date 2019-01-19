@@ -6,14 +6,14 @@
 Данный файл содержит в себе реализации функции и методов класса, объявленного в файле MyForm.h.
 */
 #include "MyForm.h"
-#define ENEMY_REACTION			170
-#define BOSS_APPEARING_SCORE	99
-#define	PRESENT_APPEARING_SCORE 25
-#define BLOCK2_APPEARING_SCORE	3
-#define	SECS_OF_BONUS			10
-#define	ENEMY_BULLET_SPEED		-3
-#define	ENEMY_BULLET2_START		290
-#define	ENEMY_BULLET3_START		440
+#define ENEMY_REACTION				170
+#define BOSS_APPEARING_SCORE		99
+#define	PRESENT_APPEARING_SCORE		25
+#define BLOCK2_APPEARING_SCORE		3
+#define	SECS_OF_BONUS				10
+#define	ENEMY_BULLET_SPEED			-3
+#define	ENEMY_BULLET2_START			290
+#define	ENEMY_BULLET3_START			440
 
 using namespace System;
 using namespace System::Windows::Forms;
